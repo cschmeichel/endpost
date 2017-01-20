@@ -64,6 +64,7 @@ module LabelServer
         <FromState>#{args[:from][:state]}</FromState>
         <FromPostalCode>#{args[:from][:zipcode] ? args[:from][:zipcode].split('-')[0] : ''}</FromPostalCode>
         <FromZIP4>#{args[:from][:zipcode] ? args[:from][:zipcode].split('-')[1] : ''}</FromZIP4>
+        <ValidateAddress>#{args[:skip_validation] ? 'FALSE' : 'TRUE'}</ValidateAddress>
       </LabelRequest>!
 
     begin
