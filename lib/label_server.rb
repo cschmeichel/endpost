@@ -44,7 +44,7 @@ module LabelServer
         <MailClass>#{args[:mail_class]}</MailClass>
         <MailpieceShape>#{args[:mailpiece_shape]}</MailpieceShape>
         <SortType>#{args[:sort_type]}</SortType>
-        <DateAdvance>0</DateAdvance>
+        <DateAdvance>#{args[:date_advance] ? args[:date_advance] : 0}</DateAdvance>
         <WeightOz>#{args[:weight]}</WeightOz>
         <Services DeliveryConfirmation="ON" SignatureConfirmation="OFF"/>
         <ReferenceID>#{args[:order_number]}</ReferenceID>
