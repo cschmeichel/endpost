@@ -108,6 +108,35 @@ class TestEndpost < Minitest::Test
     end
   end
 
+  def test_get_postage_label_success
+    VCR.use_cassette(:get_postage_label_date_advance_success) do
+      response = Endpost.get_postage_label({
+        :from => {
+          :full_name => 'Endicia',
+          :address => '10B Glenlake Parkway, Suite 300',
+          :city => 'Atlanta',
+          :state => 'CA',
+          :zipcode => '30328',
+        },
+        :to => {
+          :full_name => 'Harry Whitehouse',
+          :address => '247 High Street',
+          :city => 'Palo Alto',
+          :state => 'CA',
+          :zipcode => '94301',
+        },
+        :weight => 16,
+        :mail_class => 'Priority',
+        :mailpiece_shape => 'Parcel',
+        :sort_type => 'SinglePiece',
+        :date_advance => 3
+      })
+
+      refute_empty response[:label]
+      refute_empty response[:tracking_number]
+    end
+  end
+
   def test_get_postage_label_extended_zip_code
     VCR.use_cassette(:get_postage_label_extended_zip_code) do
       response = Endpost.get_postage_label({
